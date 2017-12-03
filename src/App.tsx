@@ -1,19 +1,25 @@
 import * as React from 'react';
 import './App.css';
-
-const logo = require('./logo.svg');
+import Canvas from './components/Canvas/Canvas';
+import ICanvasProps from './components/Canvas/ICanvasProps';
 
 class App extends React.Component {
   render() {
+    const canvasProps: ICanvasProps  = {
+      theme: {
+        title: '',
+        canvas: '',
+        container: ''
+      },
+      scale: 1,
+      title: ''
+    };
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <Canvas theme={canvasProps.theme} scale={canvasProps.scale} title={canvasProps.title} />
       </div>
     );
   }

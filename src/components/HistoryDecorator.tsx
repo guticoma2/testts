@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
-class HistoryDecorator extends Component<object, object> {
+class HistoryDecorator extends React.Component<object, object> {
 
 }
 

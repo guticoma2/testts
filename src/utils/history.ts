@@ -1,22 +1,22 @@
-import { Stack } from 'immutable';
+// import { Stack } from 'immutable';
 
-export interface IHistoryState<IComponentState> {
-    past: Stack<IComponentState>,
-    present: Stack<IComponentState>,
-    future: Stack<IComponentState>
-};
+// export interface IHistoryState<IComponentState> {
+//     past: Stack<IComponentState>,
+//     present: Stack<IComponentState>,
+//     future: Stack<IComponentState>
+// };
 
-export default <IComponentState>(initialState: IHistoryState<IComponentState>) => {
-    const state: IHistoryState<IComponentState> = initialState;
-    return {
-        undo() {
+// export default <IComponentState>(initialState: IHistoryState<IComponentState>) => {
+//     const state: IHistoryState<IComponentState> = initialState;
+//     return {
+//         undo() {
 
-        },
-        redo() {
+//         },
+//         redo() {
 
-        },
-        save(state: IComponentState) {
-            
-        }
-    };
-};
+//         },
+//         save(state: IComponentState) {
+
+//         }
+//     };
+// };
