@@ -29,9 +29,9 @@ class CanvasState implements ICanvasState {
 	static createStopPainting(state: ICanvasState): ICanvasState {
 		return Object.assign({ }, state, { isPainting: false });
 	}
-	static getInitialState(props?: ICanvasProps): ICanvasState {
+	static getInitialState(props: ICanvasProps): ICanvasState {
 		return {
-			points: List<IPoint>(),
+			points: props.points || List<IPoint>(),
 			isPainting: false,
 			color: '#df4b26',
 			size: 5,
