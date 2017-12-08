@@ -12,23 +12,25 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 		this.state = CanvasState.getInitialState(props);
 	  }
 	componentDidMount() {
-		this.updateCanvas();
+		this.updateWithDimensions();
 	}
 	componentDidUpdate() {
-
+		this.updateCanvas();
+	}
+	updateWithDimensions() {
+		this.setState(CanvasState.createWithDimensions(this.state, getCanvasSize(this.element)));
 		this.updateCanvas();
 	}
 	updateCanvas() {
 		const context = this.element.getContext('2d');
 		if (context !== null) {
 			context.lineJoin = 'round';
-			context.lineWidth = this.state.size;
-			context.strokeStyle = this.state.color;
 			const points = this.state.points.toArray();
 			for (let ndx = 1, l = points.length; ndx < l; ndx++) {
 				writeCanvasPath(context, points, ndx);
 			}
 		}
+
 	}
 	setElement = (el: HTMLCanvasElement) => { this.element = el; };
 	onMouseDownHander = (ev: React.MouseEvent<HTMLCanvasElement>) => {
@@ -38,7 +40,8 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 			y: coords.y,
 			color: this.state.color,
 			size: this.state.size,
-		}, getCanvasSize(this.element)));
+			isDragging: false
+		}));
 	}
 	onMouseLeaveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
 		this.setState(CanvasState.createStopPainting(this.state));
@@ -50,8 +53,9 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 				x: coords.x,
 				y: coords.y,
 				color: this.state.color,
-				size: this.state.size
-			}, getCanvasSize(this.element)));
+				size: this.state.size,
+				isDragging: true
+			}));
 		}
 
 	}
