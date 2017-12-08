@@ -1,38 +1,100 @@
 import * as React from 'react';
-import ICanvasProps from './ICanvasProps';
-import unionClassNames from '../../utils/unionClassNames';
+import { ICanvasProps, ICanvasState, CanvasState } from './';
+import { writeCanvasPath, getCanvasSize } from './utils';
+import { unionClassNames, getCoordinatesFromMouseEvent } from '../../utils';
 import styles from './module-css/canvas.sass';
 
-
-class Canvas extends React.Component<ICanvasProps, object> {
-	element: HTMLCanvasElement
-    componentDidMount() {
+class Canvas extends React.Component<ICanvasProps, ICanvasState> {
+	element: HTMLCanvasElement;
+	constructor(props: ICanvasProps) {
+		super(props);
+		// TODO: mix here props with state
+		this.state = CanvasState.getInitialState(props);
+	  }
+	componentDidMount() {
 		this.updateCanvas();
 	}
 	componentDidUpdate() {
+
 		this.updateCanvas();
 	}
 	updateCanvas() {
-		// const context = this.element.getContext('2d');
-    }
-    setElement = (el: HTMLCanvasElement) => { this.element = el; }
+		const context = this.element.getContext('2d');
+		if (context !== null) {
+			context.lineJoin = 'round';
+			context.lineWidth = this.state.size;
+			context.strokeStyle = this.state.color;
+			const points = this.state.points.toArray();
+			for (let ndx = 1, l = points.length; ndx < l; ndx++) {
+				writeCanvasPath(context, points, ndx);
+			}
+		}
+	}
+	setElement = (el: HTMLCanvasElement) => { this.element = el; };
+	onMouseDownHander = (ev: React.MouseEvent<HTMLCanvasElement>) => {
+		const coords = getCoordinatesFromMouseEvent(ev, this.element);
+		this.setState(CanvasState.create(this.state,  {
+			x: coords.x,
+			y: coords.y,
+			color: this.state.color,
+			size: this.state.size,
+		}, getCanvasSize(this.element)));
+	}
+	onMouseLeaveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
+		this.setState(CanvasState.createStopPainting(this.state));
+	}
+	onMouseMoveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
+		if (this.state.isPainting) {
+			const coords = getCoordinatesFromMouseEvent(ev, this.element);
+			this.setState(CanvasState.create(this.state,  {
+				x: coords.x,
+				y: coords.y,
+				color: this.state.color,
+				size: this.state.size
+			}, getCanvasSize(this.element)));
+		}
+
+	}
+	onMouseUpHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
+		this.setState(CanvasState.createStopPainting(this.state));
+	}
+	// onTouchStartHandler = (ev) => {
+
+	// }
+	// onTouchMoveHandler = (ev) => {
+
+	// }
+	// onTouchCancel = (ev) => {
+
+	// }
+	// onTouchEnd = (ev) => {
+
+	// }
 	render() {
 		const titleClass = unionClassNames(styles.title, this.props.theme.title);
 		const canvasClass = unionClassNames(styles.canvas, this.props.theme.canvas);
 		const containerClass = unionClassNames(styles.container, this.props.theme.container);
 		
 		const dimensions = {
-			width: '100px',
-			height: '100px'
-		}
+			width: this.state.dimension.width,
+			height: this.state.dimension.height
+		};
 		return (
 			<div className={containerClass}>
 				<h4 className={titleClass}>{this.props.title}</h4>
-				<canvas width={dimensions.width} height={dimensions.height} className={canvasClass} ref={this.setElement} />
+				<canvas
+					width={dimensions.width} 
+					height={dimensions.height} 
+					className={canvasClass} 
+					onMouseDown={this.onMouseDownHander}
+					onMouseLeave={this.onMouseLeaveHandler}
+					onMouseMove={this.onMouseMoveHandler}
+					onMouseUp={this.onMouseUpHandler}
+					ref={this.setElement} 
+				/>
 			</div>
 		);
 	}
-};
+}
 
 export default Canvas;
-

@@ -4,6 +4,7 @@ export default interface ICanvasProps {
         canvas: string,
         container: string
     },
-    scale: number,
-    title: string
+    title: string,
+    height?: number,
+    width?: number
 };
