@@ -15,9 +15,10 @@ const ColorBoard: React.SFC<IColorBoardProps> = (props) => {
 				onSelect: onSelectHandler,
 				dimension: { height: 5 },
 				backgroundColor: color,
-				id: color
+				id: color,
+				selected: props.selected === color
 			};
-			return (<button key={color} className={styles.button}><Bar {...barProps} /></button>);
+			return (<Bar key={color} {...barProps} />);
 		});
 	return (<div className={styles.container}>{getAllBars}</div>);
 };

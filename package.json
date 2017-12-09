@@ -21,6 +21,8 @@
     "react": "^16.2.0",
     "react-dev-utils": "^4.0.1",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
     "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "sass-resources-loader": "^1.2.1",
@@ -49,7 +51,9 @@
     "@types/node": "^8.0.53",
     "@types/react": "^16.0.25",
     "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.14",
     "immutable": "^3.8.2",
+    "redux-devtools": "^3.4.1",
     "typings-for-css-modules-loader": "^1.7.0"
   },
   "jest": {

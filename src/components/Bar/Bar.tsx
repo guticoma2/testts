@@ -1,6 +1,7 @@
 import * as React from 'react';
 import IBarProps from './IBarProps';
 import { dimensionToStyle } from '../../utils';
+import unionClassNames from '../../utils/unionClassNames';
 import styles from './module-css/bar.sass';
 
 const Bar: React.SFC<IBarProps> = (props) => {
@@ -11,13 +12,19 @@ const Bar: React.SFC<IBarProps> = (props) => {
 			backgroundColor: props.backgroundColor
 		}
 	);
-	const onClickHandler = (ev: React.SyntheticEvent<HTMLDivElement>) => {
+	const onClickHandler = (ev: React.SyntheticEvent<HTMLButtonElement>) => {
 		if (props.onSelect) {
 			props.onSelect(props.id);
 		}
 	};
-
-	return (<div style={style} className={styles.bar} onClick={onClickHandler} />);
+	const buttonClass = unionClassNames(styles.button, (props.selected ? styles.active : ''));
+	return (
+	<button
+		className={buttonClass}
+		onClick={onClickHandler}
+	>
+		<div style={style} className={styles.bar} />
+	</button>);
 };
 
 export default Bar;

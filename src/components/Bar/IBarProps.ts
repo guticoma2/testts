@@ -5,4 +5,5 @@ export default interface IBarProps {
 	backgroundColor?: string,
 	dimension: IDimension
 	onSelect?(value: string): void
+	selected: boolean
 };
