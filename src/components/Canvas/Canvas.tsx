@@ -8,16 +8,20 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 	element: HTMLCanvasElement;
 	constructor(props: ICanvasProps) {
 		super(props);
-		// TODO: mix here props with state
+		// TODO: review this, after redux 
 		this.state = CanvasState.getInitialState(props);
 	}
 	componentDidMount() {
+		window.addEventListener("resize", this.updateWithDimensions);
 		this.updateWithDimensions();
 	}
 	componentDidUpdate() {
 		this.updateCanvas();
 	}
-	updateWithDimensions() {
+	componentWillUnmount() {
+        window.removeEventListener("resize", this.updateWithDimensions);
+    }
+	updateWithDimensions = () => {
 		this.setState(CanvasState.createWithDimensions(this.state, getCanvasSize(this.element)));
 		this.updateCanvas();
 	}
@@ -30,7 +34,6 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 				writeCanvasPath(context, points, ndx);
 			}
 		}
-
 	}
 	setElement = (el: HTMLCanvasElement) => { this.element = el; };
 	onMouseDownHander = (ev: React.MouseEvent<HTMLCanvasElement>) => {
@@ -45,7 +48,6 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 	}
 	onMouseLeaveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
 		if (this.props.onMouseLeave) this.props.onMouseLeave();
-		// this.setState(CanvasState.createStopPainting(this.state));
 	}
 	onMouseMoveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
 		if (this.props.isPainting) {
@@ -58,11 +60,9 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 				isDragging: true
 			});
 		}
-
 	}
 	onMouseUpHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
 		if (this.props.onMouseUp) this.props.onMouseUp();
-		// this.setState(CanvasState.createStopPainting(this.state));
 	}
 	render() {
 		const dimensions = {

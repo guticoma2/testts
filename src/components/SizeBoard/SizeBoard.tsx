@@ -18,7 +18,7 @@ const SizeBoard: React.SFC<ISizeBoardProps> = (props) => {
 				id: size.toString(),
 				selected: props.selected === size
 			};
-			return (<Bar {...barProps} />);
+			return (<Bar key={size} {...barProps} />);
 		});
 	return (<div className={styles.container}>{getAllBars}</div>);
 };

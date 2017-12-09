@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { changeColor } from '../actions';
+import { changeSize } from '../actions';
 import SizeBoard, { ISizeBoardProps } from '../components/SizeBoard';
 
 const mapStateToProps = (state: any, ownProps: ISizeBoardProps): ISizeBoardProps =>
@@ -7,7 +7,7 @@ const mapStateToProps = (state: any, ownProps: ISizeBoardProps): ISizeBoardProps
 
 const mapDispatchToProps = (dispatch: any, ownProps: ISizeBoardProps) => ({
 	onSelect: (value: string) => {
-		dispatch(changeColor(value));
+		dispatch(changeSize(parseInt(value, 10)));
 	}
 });
 
