@@ -34,7 +34,8 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
 			onMouseDown: () => { },
 			onMouseLeave: () => { },
 			onMouseMove: () => { },
-			onMouseUp: () => { }
+			onMouseUp: () => { },
+			onUpdateDimension: () => { }
 		};
 		return (
 			<div className={styles.container}>

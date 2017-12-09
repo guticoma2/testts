@@ -1,16 +1,19 @@
 import { connect } from 'react-redux';
-import { addCanvasPoint, setCanvasNotPainting } from '../actions';
+import { addCanvasPoint, setCanvasNotPainting , updateCanvasDimension } from '../actions';
 import Canvas, { ICanvasProps } from '../components/Canvas';
-import { IPoint } from '../common';
+import { IPoint, IDimension } from '../common';
 
 const mapStateToProps = (state: any, ownProps: ICanvasProps): ICanvasProps => {
 	return Object.assign({ }, ownProps, state.paintToCanvas, {
 		color: state.selectedColor,
 		size: state.selectedSize
+	}, {
+		width: state.canvasDimension.width,
+		height: state.canvasDimension.height
 	});
-}
+};
 
-const mapDispatchToProps = (dispatch: any, ownProps: ICanvasProps)=> ({
+const mapDispatchToProps = (dispatch: any, ownProps: ICanvasProps) => ({
 	onMouseDown: (point: IPoint) => {
 		dispatch(addCanvasPoint(point));
 	},
@@ -22,6 +25,9 @@ const mapDispatchToProps = (dispatch: any, ownProps: ICanvasProps)=> ({
 	},
 	onMouseUp: () => {
 		dispatch(setCanvasNotPainting());
+	},
+	onUpdateDimension: (dimension: IDimension) => {
+		dispatch(updateCanvasDimension(dimension));
 	}
 });
 

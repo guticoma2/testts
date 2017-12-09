@@ -20,6 +20,7 @@ const paintToCanvas = (state = initialState, action: ICanvasAction) => {
 			if (action.point) {
 				return CanvasState.create(state, action.point);
 			}
+			return state;
 		case Actions.SetCanvasNotPaintingAction:
 			return CanvasState.createStopPainting(state);
 		default:

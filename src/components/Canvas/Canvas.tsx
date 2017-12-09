@@ -1,29 +1,23 @@
 import * as React from 'react';
-import { ICanvasProps, ICanvasState, CanvasState } from './';
+import { ICanvasProps, ICanvasState } from './';
 import { writeCanvasPath, getCanvasSize } from './utils';
 import { getCoordinatesFromMouseEvent } from '../../utils';
 import styles from './module-css/canvas.sass';
 
 class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 	element: HTMLCanvasElement;
-	constructor(props: ICanvasProps) {
-		super(props);
-		// TODO: review this, after redux 
-		this.state = CanvasState.getInitialState(props);
-	}
 	componentDidMount() {
-		window.addEventListener("resize", this.updateWithDimensions);
+		window.addEventListener('resize', this.updateWithDimensions);
 		this.updateWithDimensions();
 	}
 	componentDidUpdate() {
 		this.updateCanvas();
 	}
 	componentWillUnmount() {
-        window.removeEventListener("resize", this.updateWithDimensions);
-    }
+		window.removeEventListener('resize', this.updateWithDimensions);
+	}
 	updateWithDimensions = () => {
-		// TODO: Move to redux action
-		this.setState(CanvasState.createWithDimensions(this.state, getCanvasSize(this.element)));
+		this.props.onUpdateDimension(getCanvasSize(this.element));
 		this.updateCanvas();
 	}
 	updateCanvas() {
@@ -39,7 +33,7 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 	setElement = (el: HTMLCanvasElement) => { this.element = el; };
 	onMouseDownHander = (ev: React.MouseEvent<HTMLCanvasElement>) => {
 		const coords = getCoordinatesFromMouseEvent(ev, this.element);
-		if (this.props.onMouseDown) this.props.onMouseDown({
+		this.props.onMouseDown({
 			x: coords.x,
 			y: coords.y,
 			color: this.props.color,
@@ -48,12 +42,12 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 		});
 	}
 	onMouseLeaveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
-		if (this.props.onMouseLeave) this.props.onMouseLeave();
+		this.props.onMouseLeave();
 	}
 	onMouseMoveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
 		if (this.props.isPainting) {
 			const coords = getCoordinatesFromMouseEvent(ev, this.element);
-			if (this.props.onMouseMove) this.props.onMouseMove({
+			this.props.onMouseMove({
 				x: coords.x,
 				y: coords.y,
 				color: this.props.color,
@@ -63,12 +57,12 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 		}
 	}
 	onMouseUpHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
-		if (this.props.onMouseUp) this.props.onMouseUp();
+		this.props.onMouseUp();
 	}
 	render() {
 		const dimensions = {
-			width: this.state.dimension.width,
-			height: this.state.dimension.height
+			width: this.props.width,
+			height: this.props.height
 		};
 		return (
 			<div className={styles.container}>

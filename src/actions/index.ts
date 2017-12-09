@@ -4,6 +4,7 @@ import addCanvasPoint from './addCanvasPoint';
 import setCanvasNotPainting from './setCanvasNotPainting';
 import ICanvasAction from './ICanvasAction';
 import Actions from './Actions';
+import updateCanvasDimension, { IUpdateCanvasDimensionAction } from './updateCanvasDimension';
 
 export {
 	changeColor,
@@ -13,5 +14,7 @@ export {
 	addCanvasPoint,
 	ICanvasAction,
 	setCanvasNotPainting,
+	updateCanvasDimension,
+	IUpdateCanvasDimensionAction,
 	Actions
 };
