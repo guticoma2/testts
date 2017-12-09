@@ -1,24 +1,16 @@
 import * as React from 'react';
+import Layout from './components/Layout';
+
 import './App.css';
-import Canvas from './components/Canvas/Canvas';
-import ICanvasProps from './components/Canvas/ICanvasProps';
 
 class App extends React.Component {
 	render() {
-		const canvasProps: ICanvasProps  = {
-			theme: {
-				title: '',
-				canvas: '',
-				container: ''
-			},
-			title: ''
-		};
 		return (
 			<div className="App">
 				<div className="App-header" />
-				<Canvas theme={canvasProps.theme} title={canvasProps.title} />
+				<Layout />
 			</div>
-		);
+		); 
 	}
 }
 

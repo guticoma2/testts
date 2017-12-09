@@ -33,11 +33,11 @@ class CanvasState implements ICanvasState {
 		return {
 			points: props.points || List<IPoint>(),
 			isPainting: false,
-			color: '#df4b26',
-			size: 5,
+			color: props.color || '#df4b26',
+			size: props.size || 1,
 			dimension: {
-				width: props ? props.width || 200 : 200,
-				height: props ? props.height || 200 : 200
+				width: props.width || 200,
+				height: props.height || 200
 			}
 		};
 	}

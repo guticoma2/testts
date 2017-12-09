@@ -11,4 +11,6 @@ export default interface ICanvasProps {
     height?: number
     width?: number
     points: List<IPoint>
+    color: string
+    size: number
 };

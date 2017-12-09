@@ -10,7 +10,7 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 		super(props);
 		// TODO: mix here props with state
 		this.state = CanvasState.getInitialState(props);
-	  }
+	}
 	componentDidMount() {
 		this.updateWithDimensions();
 	}
@@ -62,18 +62,6 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 	onMouseUpHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
 		this.setState(CanvasState.createStopPainting(this.state));
 	}
-	// onTouchStartHandler = (ev) => {
-
-	// }
-	// onTouchMoveHandler = (ev) => {
-
-	// }
-	// onTouchCancel = (ev) => {
-
-	// }
-	// onTouchEnd = (ev) => {
-
-	// }
 	render() {
 		const titleClass = unionClassNames(styles.title, this.props.theme.title);
 		const canvasClass = unionClassNames(styles.canvas, this.props.theme.canvas);
