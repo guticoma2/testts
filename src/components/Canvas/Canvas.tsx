@@ -22,6 +22,7 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
         window.removeEventListener("resize", this.updateWithDimensions);
     }
 	updateWithDimensions = () => {
+		// TODO: Move to redux action
 		this.setState(CanvasState.createWithDimensions(this.state, getCanvasSize(this.element)));
 		this.updateCanvas();
 	}
