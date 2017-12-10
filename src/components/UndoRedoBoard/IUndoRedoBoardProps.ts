@@ -1,4 +1,4 @@
-export default interface IUndoRedoProps {
+export default interface IUndoRedoBoardProps {
 	canUndo: boolean;
 	canRedo: boolean;
 	onUndo: () => void;
