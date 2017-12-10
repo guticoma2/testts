@@ -1,6 +1,8 @@
 import { Actions } from '../../../../redux/actions';
 import UndoRedoOperation from './UndoRedoOperation';
 
+// TODO: type this
+// eg: reducer <T,U>(state: T, action U) or create base IAction IReducer..
 export default (reducer: any) => {
 	
 	// Call the reducer with empty action to populate the initial state
@@ -14,7 +16,7 @@ export default (reducer: any) => {
 	// Return a reducer that handles undo and redo
 	return (state = initialState, action: any) => {
 		const { past, present, future } = state;
-	
+			
 		switch (action.type) {
 		// previous becomes present, and present goes to future
 		case Actions.Undo:

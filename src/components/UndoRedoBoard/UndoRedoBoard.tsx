@@ -13,6 +13,6 @@ const UndoRedo: React.SFC<IUndoRedoBoardProps> = (props) => {
 			</button>
 		</div>
 	);
-}
+};
 
 export default UndoRedo;

@@ -7,4 +7,3 @@ export {
 	redo,
 	undo
 };
-
