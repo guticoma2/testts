@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
-import { addCanvasPoint, setCanvasNotPainting , updateCanvasDimension } from '../actions';
+import { addCanvasPoint, setCanvasNotPainting } from '../actions';
 import Canvas, { ICanvasProps } from '../components/Canvas';
-import { IPoint, IDimension } from '../common';
+import { IPoint } from '../common';
+import UndoRedoOperation from '../reducers/UndoRedoOperation';
 
 const mapStateToProps = (state: any, ownProps: ICanvasProps): ICanvasProps => {
-	return Object.assign({ }, ownProps, state.paintToCanvas, {
+	return Object.assign({ }, ownProps, state.paintToCanvas.present, {
 		color: state.selectedColor,
 		size: state.selectedSize
 	}, {
 		width: state.canvasDimension.width,
 		height: state.canvasDimension.height
+	}, {
+		isPainting: (state.paintToCanvas.operation !== UndoRedoOperation.None ?
+			false : state.paintToCanvas.present.isPainting)
 	});
 };
 
@@ -21,14 +25,15 @@ const mapDispatchToProps = (dispatch: any, ownProps: ICanvasProps) => ({
 		dispatch(setCanvasNotPainting());
 	},
 	onMouseMove: (point: IPoint) => {
+		console.log('mousemove');
 		dispatch(addCanvasPoint(point));
 	},
 	onMouseUp: () => {
 		dispatch(setCanvasNotPainting());
-	},
-	onUpdateDimension: (dimension: IDimension) => {
-		dispatch(updateCanvasDimension(dimension));
 	}
+	// onUpdateDimension: (dimension: IDimension) => {
+	// 	dispatch(updateCanvasDimension(dimension));
+	// }
 });
 
 const PaintCanvas = connect(

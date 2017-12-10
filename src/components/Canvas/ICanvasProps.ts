@@ -1,5 +1,5 @@
 import { List } from 'immutable';
-import { IPoint, IDimension } from '../../common';
+import { IPoint } from '../../common';
 
 export default interface ICanvasProps {
     height?: number
@@ -12,5 +12,5 @@ export default interface ICanvasProps {
 	onMouseLeave(): void
 	onMouseMove(point: IPoint): void
     onMouseUp(): void
-    onUpdateDimension(dimension: IDimension): void
+    // onUpdateDimension(dimension: IDimension): void
 };

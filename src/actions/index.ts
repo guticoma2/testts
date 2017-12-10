@@ -5,6 +5,9 @@ import setCanvasNotPainting from './setCanvasNotPainting';
 import ICanvasAction from './ICanvasAction';
 import Actions from './Actions';
 import updateCanvasDimension, { IUpdateCanvasDimensionAction } from './updateCanvasDimension';
+import undo from './undo';
+import redo from './redo';
+import IUndoRedoAction from './IUndoRedoAction';
 
 export {
 	changeColor,
@@ -16,5 +19,8 @@ export {
 	setCanvasNotPainting,
 	updateCanvasDimension,
 	IUpdateCanvasDimensionAction,
+	undo,
+	redo,
+	IUndoRedoAction,
 	Actions
 };

@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { ICanvasProps, ICanvasState } from './';
+import { ICanvasProps, ICanvasState, CanvasState } from './';
 import { writeCanvasPath, getCanvasSize } from './utils';
 import { getCoordinatesFromMouseEvent } from '../../utils';
 import styles from './module-css/canvas.sass';
 
 class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 	element: HTMLCanvasElement;
+	constructor(props: ICanvasProps) {
+		super(props);
+		this.state = CanvasState.getInitialState(props);
+	}
 	componentDidMount() {
 		window.addEventListener('resize', this.updateWithDimensions);
 		this.updateWithDimensions();
@@ -17,12 +21,16 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 		window.removeEventListener('resize', this.updateWithDimensions);
 	}
 	updateWithDimensions = () => {
-		this.props.onUpdateDimension(getCanvasSize(this.element));
+		this.setState(CanvasState.createWithDimensions(this.state, getCanvasSize(this.element)));
 		this.updateCanvas();
+	}
+	clear(context: CanvasRenderingContext2D) {
+		context.clearRect(0, 0, this.state.dimension.width || 200, this.state.dimension.height || 200);
 	}
 	updateCanvas() {
 		const context = this.element.getContext('2d');
 		if (context !== null) {
+			this.clear(context);
 			context.lineJoin = 'round';
 			const points = this.props.points.toArray();
 			for (let ndx = 1, l = points.length; ndx < l; ndx++) {
@@ -42,7 +50,9 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 		});
 	}
 	onMouseLeaveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
-		this.props.onMouseLeave();
+		// if (this.props.isPainting) {
+		// 	this.props.onMouseLeave();
+		// }
 	}
 	onMouseMoveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
 		if (this.props.isPainting) {
@@ -61,8 +71,8 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 	}
 	render() {
 		const dimensions = {
-			width: this.props.width,
-			height: this.props.height
+			width: this.state.dimension.width,
+			height: this.state.dimension.height
 		};
 		return (
 			<div className={styles.container}>
