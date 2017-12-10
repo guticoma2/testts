@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { ICanvasProps, ICanvasState, CanvasState } from './';
+import { ICanvasProps, ICanvasState } from './';
 import { writeCanvasPath, getCanvasSize } from './utils';
 import { getCoordinatesFromMouseEvent } from '../../utils';
 import styles from './module-css/canvas.sass';
 
 class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 	element: HTMLCanvasElement;
-	constructor(props: ICanvasProps) {
-		super(props);
-		this.state = CanvasState.getInitialState(props);
-	}
 	componentDidMount() {
 		window.addEventListener('resize', this.updateWithDimensions);
 		this.updateWithDimensions();
@@ -21,11 +17,11 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 		window.removeEventListener('resize', this.updateWithDimensions);
 	}
 	updateWithDimensions = () => {
-		this.setState(CanvasState.createWithDimensions(this.state, getCanvasSize(this.element)));
+		this.props.onUpdateDimension(getCanvasSize(this.element));
 		this.updateCanvas();
 	}
 	clear(context: CanvasRenderingContext2D) {
-		context.clearRect(0, 0, this.state.dimension.width || 200, this.state.dimension.height || 200);
+		context.clearRect(0, 0, this.props.width || 200, this.props.height || 200);
 	}
 	updateCanvas() {
 		const context = this.element.getContext('2d');
@@ -69,8 +65,8 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 	}
 	render() {
 		const dimensions = {
-			width: this.state.dimension.width,
-			height: this.state.dimension.height
+			width: this.props.width,
+			height: this.props.height
 		};
 		return (
 			<div className={styles.container}>

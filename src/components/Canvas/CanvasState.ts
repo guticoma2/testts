@@ -1,6 +1,6 @@
 import { List } from 'immutable';
 import { IPoint, IDimension } from '../../common';
-import { ICanvasState, ICanvasProps } from './';
+import { ICanvasState } from './';
 
 class CanvasState implements ICanvasState {
 	dimension: IDimension;
@@ -28,18 +28,6 @@ class CanvasState implements ICanvasState {
 	}
 	static createStopPainting(state: ICanvasState): ICanvasState {
 		return Object.assign({ }, state, { isPainting: false });
-	}
-	static getInitialState(props: ICanvasProps): ICanvasState {
-		return {
-			points: props.points || List<IPoint>(),
-			isPainting: false,
-			color: props.color || '#df4b26',
-			size: props.size || 1,
-			dimension: {
-				width: props.width || 200,
-				height: props.height || 200
-			}
-		};
 	}
 	static createWithDimensions(state: ICanvasState, dimension: IDimension) {
 		return Object.assign({ }, state, { dimension });

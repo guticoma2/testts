@@ -34,8 +34,8 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
 			onMouseDown: () => { },
 			onMouseLeave: () => { },
 			onMouseMove: () => { },
-			onMouseUp: () => { }
-			// onUpdateDimension: () => { }
+			onMouseUp: () => { },
+			onUpdateDimension: () => { }
 		};
 		const undoRedoProps = {
 			canUndo: false,
