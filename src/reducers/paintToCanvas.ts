@@ -9,8 +9,8 @@ const initialState: ICanvasState = {
 	color: 'red',
 	isPainting: false,
 	dimension: {
-		width: 200,
-		height: 200
+		width: 500,
+		height: 500
 	}
 };
 

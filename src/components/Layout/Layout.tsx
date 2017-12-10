@@ -48,13 +48,9 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
 				<section className={styles['section-canvas']}>
 					<PaintCanvas {...canvasProps} />
 				</section>
-				<section>
+				<section className={styles['section-board']}>
 					<UndoRedo {...undoRedoProps} />
-				</section>
-				<section className={styles['section-color-board']}>
 					<SelectableColor {...colorBoardProps} />
-				</section>
-				<section className={styles['section-size-board']}>
 					<SelectableSize {...sizeBoardProps} />
 				</section>
 			</div>
