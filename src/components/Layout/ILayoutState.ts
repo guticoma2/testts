@@ -1,4 +1,4 @@
 export default interface ILayoutState {
-	size: number
-	color: string
-};
+	size: number;
+	color: string;
+}

@@ -1,6 +1,4 @@
 export default interface ICoord {
-    x: number
-    y: number
-};
-
- 
+	x: number;
+	y: number;
+}

@@ -31,6 +31,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
 			color: 'red',
 			size: 1,
 			isPainting: false,
+			/* tslint:disable:no-empty */
 			onMouseDown: () => { },
 			onMouseLeave: () => { },
 			onMouseMove: () => { },

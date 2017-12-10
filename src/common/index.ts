@@ -4,8 +4,8 @@ import IDimension from './IDimension';
 import ICssDimension from './ICssDimension';
 
 export {
-    IPoint,
-    ICoord,
-    IDimension,
-    ICssDimension
+	IPoint,
+	ICoord,
+	IDimension,
+	ICssDimension
 };

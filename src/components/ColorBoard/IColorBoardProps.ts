@@ -1,5 +1,5 @@
 export default interface IColorBoardProps {
-	colors: string[]
-	onSelect?(value: string): void
-	selected: string
-};
+	colors: string[];
+	selected: string;
+	onSelect?(value: string): void;
+}

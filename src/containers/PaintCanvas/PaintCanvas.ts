@@ -9,10 +9,10 @@ const mapStateToProps = (state: any, ownProps: ICanvasProps): ICanvasProps => {
 	return Object.assign({ }, ownProps, state.paintToCanvas.present, {
 			color: state.selectedColor,
 			size: state.selectedSize
-		}, {
+		},                  {
 			width: state.canvasDimension.width,
 			height: state.canvasDimension.height
-		}, {
+		},                  {
 			isPainting: (state.paintToCanvas.operation !== UndoRedoOperation.None ?
 				false : state.paintToCanvas.present.isPainting)
 	});
@@ -28,7 +28,6 @@ const mapDispatchToProps = (dispatch: any, ownProps: ICanvasProps) => ({
 		}
 	},
 	onMouseMove: (point: IPoint) => {
-		console.log('mousemove');
 		dispatch(addCanvasPoint(point));
 	},
 	onMouseUp: () => {

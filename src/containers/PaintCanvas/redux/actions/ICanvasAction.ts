@@ -1,4 +1,4 @@
-import { IPoint } from "../../../../common";
+import { IPoint } from '../../../../common';
 
 export default interface ICanvasAction {
 	type: string;
