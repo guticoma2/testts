@@ -10,9 +10,9 @@ class CanvasState implements ICanvasState {
 	points: List<IPoint>;
 	size: number;
 	color: string;
-	static create(state: ICanvasState, point: IPoint): ICanvasState {
+	static create(state: ICanvasState, nextPoint: IPoint): ICanvasState {
 		return Object.assign({ }, state, {
-			points: state.points.push(point),
+			points: state.points.push(nextPoint),
 			isPainting: true
 		});
 	}
@@ -29,8 +29,8 @@ class CanvasState implements ICanvasState {
 	static createStopPainting(state: ICanvasState): ICanvasState {
 		return Object.assign({ }, state, { isPainting: false });
 	}
-	static createWithDimensions(state: ICanvasState, dimension: IDimension) {
-		return Object.assign({ }, state, { dimension });
+	static createWithDimensions(state: ICanvasState, nextDimension: IDimension) {
+		return Object.assign({ }, state, { nextDimension });
 	}
 }
 

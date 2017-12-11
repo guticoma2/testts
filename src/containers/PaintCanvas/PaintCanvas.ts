@@ -23,9 +23,7 @@ const mapDispatchToProps = (dispatch: any, ownProps: ICanvasProps) => ({
 		dispatch(addCanvasPoint(point));
 	},
 	onMouseLeave: () => {
-		if (ownProps.isPainting) {
-			dispatch(setCanvasNotPainting());
-		}
+		dispatch(setCanvasNotPainting());
 	},
 	onMouseMove: (point: IPoint) => {
 		dispatch(addCanvasPoint(point));

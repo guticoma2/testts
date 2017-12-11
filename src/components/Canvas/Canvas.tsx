@@ -62,7 +62,9 @@ class Canvas extends React.Component<ICanvasProps, ICanvasState> {
 		});
 	}
 	onMouseLeaveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
-		this.props.onMouseLeave();
+		if (this.props.isPainting) {
+			this.props.onMouseLeave();
+		}
 	}
 	onMouseMoveHandler = (ev: React.MouseEvent<HTMLCanvasElement>) => {
 		if (this.props.isPainting) {
