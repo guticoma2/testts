@@ -1,7 +1,7 @@
 import { List } from 'immutable';
 import { IPoint, IDimension } from '../../common';
 import { ICanvasState } from './';
-
+// TODO: after redux refactor canvas doesn't have state. This state should be moved to container and changed according container's properties
 class CanvasState implements ICanvasState {
 	dimension: IDimension;
 	width: number;
