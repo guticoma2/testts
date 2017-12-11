@@ -1,20 +1,20 @@
 import { Actions } from '../../../../redux/actions';
 import UndoRedoOperation from './UndoRedoOperation';
+import { IUndoRedoAction } from '../actions/index';
 
 // TODO: type this
-// eg: reducer <T,U>(state: T, action U) or create base IAction IReducer..
 export default (reducer: any) => {
 	
 	// Call the reducer with empty action to populate the initial state
 	const initialState = {
-		past: [],
+		past: new Array(),
 		present: reducer(undefined, {}),
-		future: [],
+		future: new Array(),
 		operation: UndoRedoOperation.None
 	};
 
 	// Return a reducer that handles undo and redo
-	return (state = initialState, action: any) => {
+	return (state = initialState, action: IUndoRedoAction) => {
 		const { past, present, future } = state;
 			
 		switch (action.type) {

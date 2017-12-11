@@ -1,26 +1,25 @@
 import { Actions } from '../../../../../redux/actions';
 import { ICanvasState } from '../../../../../components/Canvas/index';
-import { List } from 'immutable';
 import { IPoint } from '../../../../../common/index';
 import { CanvasState } from '../../../../../components/Canvas/index';
+import Canvas from '../../../../../components/Canvas';
 import { paintToCanvas } from '../index';
 
-
 const initialState: ICanvasState = {
-	points: List<IPoint>(),
-	size: 1,
-	color: 'red',
-	isPainting: false,
+	points: Canvas.defaultProps.points,
+	size: Canvas.defaultProps.size,
+	color: Canvas.defaultProps.color,
+	isPainting: Canvas.defaultProps.isPainting,
 	dimension: {
-		width: 500,
-		height: 500
+		width: Canvas.defaultProps.width,
+		height: Canvas.defaultProps.height
 	}
 };
 
 describe('paintToCanvas reducer', () => {
 	test('passing to reducer without state and unknown action returns default state', () => {
 		const result = paintToCanvas(undefined, {
-			type: 'something other',
+			type: 'invalid action type',
 		});
 		expect(result).toMatchObject(initialState);
 	});

@@ -1,18 +1,19 @@
 import canvasDimension from '../canvasDimension';
+import Canvas from '../../../../../components/Canvas';
 import { Actions } from '../../../../../redux/actions';
 
 describe('canvasDimension reducer', () => {
 	test('passing to reducer without state and unknown action returns default value 500x500', () => {
 		const result = canvasDimension(undefined, {
-			type: 'something other',
+			type: 'invalid action type',
 			dimension: {
 				width: 100,
 				height: 100
 			}
 		});
 		expect(result).toMatchObject({
-			height: 500,
-			width: 500
+			height: Canvas.defaultProps.height,
+			width: Canvas.defaultProps.width
 		});
 	});
 	test('passing to reducer with proper action updates result with dimension', () => {

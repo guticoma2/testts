@@ -1,16 +1,15 @@
 import { ICanvasAction, Actions } from '../../../../redux/actions';
+import Canvas from '../../../../components/Canvas';
 import { ICanvasState, CanvasState } from '../../../../components/Canvas/index';
-import { List } from 'immutable';
-import { IPoint } from '../../../../common/index';
 
 const initialState: ICanvasState = {
-	points: List<IPoint>(),
-	size: 1,
-	color: 'red',
-	isPainting: false,
+	points: Canvas.defaultProps.points,
+	size: Canvas.defaultProps.size,
+	color: Canvas.defaultProps.color,
+	isPainting: Canvas.defaultProps.isPainting,
 	dimension: {
-		width: 500,
-		height: 500
+		width: Canvas.defaultProps.width,
+		height: Canvas.defaultProps.height
 	}
 };
 
