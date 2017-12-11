@@ -21,7 +21,9 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
 		const undoRedoProps = {
 			canUndo: false,
 			canRedo: false,
+			// tslint:disable-next-line:no-empty
 			onUndo: () => { },
+			// tslint:disable-next-line:no-empty
 			onRedo: () => { }
 		};
 		return (
