@@ -15,4 +15,13 @@ const UndoRedo: React.SFC<IUndoRedoBoardProps> = (props) => {
 	);
 };
 
+UndoRedo.defaultProps = {
+	canUndo: false,
+	canRedo: false,
+	// tslint:disable-next-line:no-empty
+	onUndo: () => { },
+	// tslint:disable-next-line:no-empty
+	onRedo: () => { }
+};
+
 export default UndoRedo;

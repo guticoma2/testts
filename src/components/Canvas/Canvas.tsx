@@ -3,8 +3,24 @@ import { ICanvasProps, ICanvasState } from './';
 import { writeCanvasPath, getCanvasSize } from './utils';
 import { getCoordinatesFromMouseEvent } from '../../utils';
 import styles from './module-css/canvas.sass';
+import { List } from 'immutable';
+import { IPoint } from '../../common/index';
 
 class Canvas extends React.Component<ICanvasProps, ICanvasState> {
+	static defaultProps: ICanvasProps = {
+		height: 500,
+		width: 500,
+		points: List<IPoint>(),
+		color: 'red',
+		size: 1,
+		isPainting: false,
+		/* tslint:disable:no-empty */
+		onMouseDown: () => { },
+		onMouseLeave: () => { },
+		onMouseMove: () => { },
+		onMouseUp: () => { },
+		onUpdateDimension: () => { }
+	} 
 	element: HTMLCanvasElement;
 	componentDidMount() {
 		window.addEventListener('resize', this.updateWithDimensions);

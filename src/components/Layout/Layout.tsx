@@ -1,42 +1,22 @@
 import * as React from 'react';
-import { List } from 'immutable';
 import SelectableColor from '../../containers/SelectableColor';
 import PaintCanvas from '../../containers/PaintCanvas';
 import ILayoutProps from './ILayoutProps';
 import styles from './module-css/layout.sass';
-import { IPoint } from '../../common';
+import Canvas from '../Canvas';
 import ILayoutState from './ILayoutState';
 import { SelectableSize } from '../../containers/index';
 import UndoRedo from '../../containers/UndoRedo';
 
 class Layout extends React.Component<ILayoutProps, ILayoutState> {
-	constructor(props: ILayoutProps) {
-		super(props);
-		this.state = {
-			size: 1,
-			color: 'red'
-		};
-	}
 	render() {
 		const colorBoardProps = {
 			colors: ['red', 'blue', 'black'],
-			selected: 'red'
+			selected: Canvas.defaultProps.color
 		};
 		const sizeBoardProps = {
 			sizes: [1, 2, 3, 4, 5],
-			selected: 1
-		};
-		const canvasProps = {
-			points: List<IPoint>(),
-			color: 'red',
-			size: 1,
-			isPainting: false,
-			/* tslint:disable:no-empty */
-			onMouseDown: () => { },
-			onMouseLeave: () => { },
-			onMouseMove: () => { },
-			onMouseUp: () => { },
-			onUpdateDimension: () => { }
+			selected: Canvas.defaultProps.size
 		};
 		const undoRedoProps = {
 			canUndo: false,
@@ -47,7 +27,7 @@ class Layout extends React.Component<ILayoutProps, ILayoutState> {
 		return (
 			<div className={styles.container}>
 				<section className={styles.canvas}>
-					<PaintCanvas {...canvasProps} />
+					<PaintCanvas {...Canvas.defaultProps} />
 				</section>
 				<section className={styles.board}>
 					<UndoRedo {...undoRedoProps} />

@@ -23,4 +23,11 @@ const SizeBoard: React.SFC<ISizeBoardProps> = (props) => {
 	return (<div className={styles.container}>{getAllBars}</div>);
 };
 
+SizeBoard.defaultProps = {
+	sizes: [],
+	selected: 0,
+	// tslint:disable-next-line:no-empty
+	onSelect: () => { }
+};
+
 export default SizeBoard;

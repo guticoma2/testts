@@ -27,4 +27,13 @@ const Bar: React.SFC<IBarProps> = (props) => {
 	</button>);
 };
 
+Bar.defaultProps = {
+	id: '',
+	backgroundColor: 'red',
+	dimension: { height: 5 },
+	selected: false,
+	// tslint:disable-next-line:no-empty
+	onSelect: () => { }
+};
+
 export default Bar;

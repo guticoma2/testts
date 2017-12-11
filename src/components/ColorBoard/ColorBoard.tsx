@@ -23,4 +23,11 @@ const ColorBoard: React.SFC<IColorBoardProps> = (props) => {
 	return (<div className={styles.container}>{getAllBars}</div>);
 };
 
+ColorBoard.defaultProps = {
+	colors: [],
+	selected: '',
+	// tslint:disable-next-line:no-empty
+	onSelect: () => { }
+};
+
 export default ColorBoard;
