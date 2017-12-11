@@ -1,6 +1,7 @@
 require('core-js/es6/map');
 require('core-js/es6/set');
 require('raf/polyfill');
+require('../polyfills');
 const enzyme = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
 const toJson = require('enzyme-to-json');
