@@ -97,8 +97,8 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 ## Notes about this code
 
-Naming conventions with interfaces: changed to allow I as prefix. (Is there some explanation about Microsoft recommends not to using it?)
-Redux typed: I know I have to avoid any types but because normally I develop ecma6 I haven't enough time to use it properly. Sorry. I keep tslint errors about that because works but it's wrong.
+* `Naming conventions with interfaces`: changed to allow I as prefix. (Is there some explanation about Microsoft recommends not to using it?)
+* `Redux typed`: I know I have to avoid `any` types but because normally I develop `ecma6` I haven't enough time to use redux typed properly. Sorry. I keep `tslint` errors about that because works but it's wrong.
 
 
 ## Updating to New Releases
