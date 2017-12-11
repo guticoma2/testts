@@ -9,7 +9,7 @@ describe('undoredo enhanced reducer ', () => {
 	test('passing invalid action to reducer return default state', () => {
 		const initialStateDefault = {
 			past: [],
-			present: selectedColor(undefined, { }),
+			present: selectedColor(undefined, { type: Actions.ChangeColor, color: 'red' }),
 			future: [],
 			operation: UndoRedoOperation.None
 		};
