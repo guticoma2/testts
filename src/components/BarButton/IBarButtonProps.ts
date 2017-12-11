@@ -1,6 +1,6 @@
 import { IDimension } from '../../common';
 
-export default interface IBarProps {
+export default interface IBarButtonProps {
 	id: string;
 	backgroundColor?: string;
 	dimension: IDimension;

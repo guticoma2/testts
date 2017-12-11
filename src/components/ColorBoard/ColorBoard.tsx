@@ -1,6 +1,6 @@
 import * as React from 'react';
 import IColorBoardProps from './IColorBoardProps';
-import Bar from '../Bar';
+import Bar from '../BarButton';
 import styles from './module-css/colorBoard.sass';
 
 const ColorBoard: React.SFC<IColorBoardProps> = (props) => {

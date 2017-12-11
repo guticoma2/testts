@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ISizeBoardProps from './ISizeBoardProps';
-import Bar from '../Bar';
+import Bar from '../BarButton';
 import styles from './module-css/sizeBoard.sass';
 
 const SizeBoard: React.SFC<ISizeBoardProps> = (props) => {

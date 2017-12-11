@@ -1,5 +1,5 @@
 import * as React from 'react';
-import IBarProps from './IBarProps';
+import IBarProps from './IBarButtonProps';
 import { dimensionToStyle } from '../../utils';
 import unionClassNames from '../../utils/unionClassNames';
 import styles from './module-css/bar.sass';
