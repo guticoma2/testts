@@ -27,7 +27,7 @@ describe('Bar component rendering', () => {
 		expect(style.backgroundColor).toBe('blue');
 	});
 
-	it('when height is set to a color then bar is colored as this height', () => {
+	it('when height is set then bar has the specified height', () => {
 		const props: IBarButtonProps = {
 			id: 'test',
 			backgroundColor: 'blue',
@@ -40,7 +40,7 @@ describe('Bar component rendering', () => {
 		expect(style.height).toBe('5px');
 	});
 
-	it('when width is set to a color then bar is colored as this width', () => {
+	it('when width is set then bar has the specified width', () => {
 		const props: IBarButtonProps = {
 			id: 'test',
 			backgroundColor: 'blue',
